@@ -1,38 +1,38 @@
 const palette = {
-  neutral100: "#FFFFFF",
-  neutral200: "#F4F2F1",
-  neutral300: "#D7CEC9",
-  neutral400: "#B6ACA6",
-  neutral500: "#978F8A",
-  neutral600: "#564E4A",
-  neutral700: "#3C3836",
-  neutral800: "#191015",
-  neutral900: "#000000",
+  neutral100: "#FAFAFA", // Crisp white for backgrounds
+  neutral200: "#ECEFF1", // Soft off-white with cool undertone
+  neutral300: "#CFD8DC", // Light gray for subtle contrasts
+  neutral400: "#90A4AE", // Mid-tone gray for borders
+  neutral500: "#607D8B", // Balanced gray for secondary elements
+  neutral600: "#455A64", // Darker gray for text/icons
+  neutral700: "#37474F", // Deep slate for emphasis
+  neutral800: "#263238", // Near-black for strong contrast
+  neutral900: "#0A1419", // True black alternative with depth
 
-  primary100: "#F4E0D9",
-  primary200: "#E8C1B4",
-  primary300: "#DDA28E",
-  primary400: "#D28468",
-  primary500: "#C76542",
-  primary600: "#A54F31",
+  primary100: "#E0F2F1", // Pale teal for light backgrounds
+  primary200: "#B2DFDB", // Soft teal for hover states
+  primary300: "#4DB6AC", // Mid-tone teal for buttons
+  primary400: "#26A69A", // Vibrant teal for primary actions
+  primary500: "#00897B", // Deep teal for core branding
+  primary600: "#00695C", // Dark teal for emphasis
 
-  secondary100: "#DCDDE9",
-  secondary200: "#BCC0D6",
-  secondary300: "#9196B9",
-  secondary400: "#626894",
-  secondary500: "#41476E",
+  secondary100: "#EDE7F6", // Light lavender for subtle accents
+  secondary200: "#D1C4E9", // Muted purple for secondary elements
+  secondary300: "#B39DDB", // Soft amethyst for depth
+  secondary400: "#9575CD", // Rich purple for interactive elements
+  secondary500: "#7E57C2", // Deep violet for strong accents
 
-  accent100: "#FFEED4",
-  accent200: "#FFE1B2",
-  accent300: "#FDD495",
-  accent400: "#FBC878",
-  accent500: "#FFBB50",
+  accent100: "#FFF8E1", // Pale gold for highlights
+  accent200: "#FFECB3", // Warm gold for hover states
+  accent300: "#FFCA28", // Bright gold for key actions
+  accent400: "#FFB300", // Vibrant amber for bold accents
+  accent500: "#FFA000", // Deep amber for emphasis
 
-  angry100: "#F2D6CD",
-  angry500: "#C03403",
+  angry100: "#FFEBEE", // Soft red for error backgrounds
+  angry500: "#D32F2F", // Muted red for error states
 
-  overlay20: "rgba(25, 16, 21, 0.2)",
-  overlay50: "rgba(25, 16, 21, 0.5)",
+  overlay20: "rgba(10, 20, 25, 0.2)", // Subtle overlay for modals
+  overlay50: "rgba(10, 20, 25, 0.5)", // Stronger overlay for emphasis
 } as const
 
 export const colors = {
@@ -57,7 +57,7 @@ export const colors = {
   /**
    * The default color of the screen background.
    */
-  background: palette.neutral200,
+  background: palette.neutral100,
   /**
    * The default border color.
    */

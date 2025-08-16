@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "382400761834",
+    "project_id": "task-management-efa7e",
+    "storage_bucket": "task-management-efa7e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382400761834:android:791083a46a0509e4602c93",
+        "android_client_info": {
+          "package_name": "com.nativepulse.taskmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382400761834-ol07tadqe387pfo5pvb545t9uicvgge2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nativepulse.taskmanagement",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "382400761834-8avomnpek5ra184es31brqfs0emqsofu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUJn7jVg40b7ZXuDxIktiRfSU8TXwByt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382400761834-8avomnpek5ra184es31brqfs0emqsofu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

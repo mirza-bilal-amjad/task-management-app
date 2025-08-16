@@ -80,6 +80,8 @@ export const Text = forwardRef(function Text(props: TextProps, ref: ForwardedRef
 })
 
 const $sizeStyles = {
+  xxxxl: { fontSize: 44, lineHeight: 52 } satisfies TextStyle,
+  xxxl: { fontSize: 40, lineHeight: 48 } satisfies TextStyle,
   xxl: { fontSize: 36, lineHeight: 44 } satisfies TextStyle,
   xl: { fontSize: 24, lineHeight: 34 } satisfies TextStyle,
   lg: { fontSize: 20, lineHeight: 32 } satisfies TextStyle,
@@ -87,6 +89,8 @@ const $sizeStyles = {
   sm: { fontSize: 16, lineHeight: 24 } satisfies TextStyle,
   xs: { fontSize: 14, lineHeight: 21 } satisfies TextStyle,
   xxs: { fontSize: 12, lineHeight: 18 } satisfies TextStyle,
+  xxxs: { fontSize: 10, lineHeight: 16 } satisfies TextStyle,
+  xxxxs: { fontSize: 8, lineHeight: 14 } satisfies TextStyle,
 }
 
 const $fontWeightStyles = Object.entries(typography.primary).reduce((acc, [weight, fontFamily]) => {

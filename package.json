@@ -17,7 +17,7 @@
     "align-deps": "npx expo install --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:maestro": "maestro test -e MAESTRO_APP_ID=com.nativepulse.paperless .maestro/flows",
+    "test:maestro": "maestro test -e MAESTRO_APP_ID=com.nativepulse.taskmanagement .maestro/flows",
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081",
     "build:ios:sim": "eas build --profile development --platform ios --local",
     "build:ios:dev": "eas build --profile development:device --platform ios --local",
@@ -31,6 +31,10 @@
   "dependencies": {
     "@expo-google-fonts/space-grotesk": "^0.4.0",
     "@expo/metro-runtime": "~5.0.4",
+    "@legendapp/list": "^1.1.4",
+    "@react-native-firebase/app": "^22.4.0",
+    "@react-native-firebase/auth": "^22.4.0",
+    "@react-native-google-signin/google-signin": "^15.0.0",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
     "@shopify/flash-list": "1.8.1",
@@ -47,6 +51,10 @@
     "expo-system-ui": "~5.0.9",
     "i18next": "^23.14.0",
     "intl-pluralrules": "^2.0.1",
+    "lucide-react-native": "^0.526.0",
+    "mobx": "^6.13.7",
+    "mobx-react-lite": "^4.1.0",
+    "mobx-state-tree": "^7.0.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-i18next": "^15.0.1",
@@ -59,7 +67,8 @@
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
-    "react-native-web": "^0.20.0"
+    "react-native-web": "^0.20.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -96,5 +105,10 @@
         "@shopify/flash-list"
       ]
     }
-  }
+  },
+  "trustedDependencies": [
+    "@firebase/util",
+    "protobufjs",
+    "unrs-resolver"
+  ]
 }

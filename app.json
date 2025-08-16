@@ -1,7 +1,7 @@
 {
-  "name": "paperless-app",
-  "slug": "paperless-app",
-  "scheme": "paperless-app",
+  "name": "taskmanagement",
+  "slug": "taskmanagement",
+  "scheme": "taskmanagement",
   "version": "1.0.0",
   "orientation": "portrait",
   "userInterfaceStyle": "automatic",
@@ -16,7 +16,8 @@
   ],
   "android": {
     "icon": "./assets/images/app-icon-android-legacy.png",
-    "package": "com.nativepulse.paperless",
+    "package": "com.nativepulse.taskmanagement",
+    "googleServicesFile": "./assets/services/google-services.json",
     "adaptiveIcon": {
       "foregroundImage": "./assets/images/app-icon-android-adaptive-foreground.png",
       "backgroundImage": "./assets/images/app-icon-android-adaptive-background.png"
@@ -27,7 +28,7 @@
   "ios": {
     "icon": "./assets/images/app-icon-ios.png",
     "supportsTablet": true,
-    "bundleIdentifier": "com.nativepulse.paperless"
+    "bundleIdentifier": "com.nativepulse.taskmanagement"
   },
   "web": {
     "favicon": "./assets/images/app-icon-web-favicon.png",

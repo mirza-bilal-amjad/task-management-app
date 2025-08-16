@@ -179,8 +179,8 @@ export function Button(props: ButtonProps) {
 }
 
 const $baseViewStyle: ThemedStyle<ViewStyle> = ({ spacing }) => ({
-  minHeight: 56,
-  borderRadius: 4,
+  minHeight: 46,
+  borderRadius: spacing.xxl,
   justifyContent: "center",
   alignItems: "center",
   paddingVertical: spacing.sm,

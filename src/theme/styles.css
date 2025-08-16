@@ -1,0 +1,27 @@
+/* Light Theme */
+.light-theme {
+  --violet: #B266B2;
+  --indigo: #7A66B2;
+  --blue: #6666FF;
+  --green: #66B266;
+  --yellow: #FFFF66;
+  --orange: #FFBF66;
+  --red: #FF6666;
+}
+
+/* Dark Theme */
+.dark-theme {
+  --violet: #4C004C;
+  --indigo: #2D004C;
+  --blue: #000099;
+  --green: #004C00;
+  --yellow: #999900;
+  --orange: #995C00;
+  --red: #990000;
+}
+
+/* Example Button Styling */
+button {
+  background-color: var(--blue);
+  color: #FFFFFF; /* Ensure sufficient contrast */
+}
