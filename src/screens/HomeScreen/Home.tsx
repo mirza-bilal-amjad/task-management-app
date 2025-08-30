@@ -1,5 +1,4 @@
-import { FC } from "react"
-import { FlatList, Platform, TextStyle, View, ViewStyle } from "react-native"
+import { FlatList, Platform, View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 
 import {
@@ -16,20 +15,16 @@ import { useStores } from "@/models"
 import { $styles, ThemedStyle, typography } from "@/theme"
 import { useAppTheme } from "@/theme/context"
 
-export const DashboardScreen = observer(() => {
+import { TodayTasks, ToDoInProgressView } from "./components"
+
+export const HomeScreen = observer(() => {
   const {
     themed,
     theme: { colors, spacing, isDark },
     setThemeContextOverride,
   } = useAppTheme()
   const {
-    categoriesStore: {
-      getRecentProjects,
-      getTodaysRecentTasks,
-      addProject,
-      getDueTasks,
-      getTodoTasks,
-    },
+    categoriesStore: { getRecentProjects, addProject },
     authStore: { user, logout },
   } = useStores()
 
@@ -40,59 +35,8 @@ export const DashboardScreen = observer(() => {
     })
   }
 
-  const TodayTasks: FC<{}> = observer(() => {
-    return (
-      <View style={themed($todayTasksContainer)}>
-        <FlatList
-          scrollEnabled={false}
-          ListHeaderComponent={
-            <View style={themed($todayTasksHeader)}>
-              <Text size="xl" weight="bold" text={"Today"} />
-            </View>
-          }
-          data={getTodaysRecentTasks()}
-          ItemSeparatorComponent={() => <View style={themed($todayTasksSeparator)} />}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item, index }) => (
-            <View key={index}>
-              <Text size="xxs" text={item.dueTime} style={{ color: colors.text }} />
-              <Text size="xs" weight="bold" text={item.title} numberOfLines={2} />
-            </View>
-          )}
-        />
-      </View>
-    )
-  })
-
-  const ToDoInProgressView: FC<{
-    type?: "todo" | "in-progress"
-  }> = observer(({ type }) => {
-    const backgroundColor =
-      type === "todo" ? colors.palette.primary200 : colors.palette.secondary200
-    const numberOfTasks = type === "todo" ? getTodoTasks().length : getDueTasks().length
-    const cardTitle = type === "in-progress" ? "In progress" : "To do list"
-    return (
-      <View style={themed([$toDoInProgressCard, { backgroundColor }])}>
-        <View>
-          <Icon icon="settings" size={spacing.xl} color={colors.text} />
-        </View>
-
-        <View>
-          <Text text={numberOfTasks?.toString()?.concat(" tasks")} size={"xs"} />
-          <Text weight="bold" text={cardTitle} />
-        </View>
-      </View>
-    )
-  })
-
   return (
-    <Screen
-      style={themed($container)}
-      ScrollViewProps={{
-        showsVerticalScrollIndicator: Platform.OS !== "web",
-      }}
-      preset="scroll"
-    >
+    <Screen preset="auto" style={themed($container)}>
       <Header
         style={themed($header)}
         LeftActionComponent={
@@ -210,7 +154,7 @@ export const DashboardScreen = observer(() => {
             name={item.name}
             description={item.description}
             tasks={[]}
-            createdAt={""}
+            createdAt={Date.now()}
           />
         )}
       />
@@ -221,6 +165,7 @@ export const DashboardScreen = observer(() => {
 const $container: ThemedStyle<ViewStyle> = ({ spacing }) => ({
   flex: 1,
 })
+
 const $headerRightComp: ThemedStyle<ViewStyle> = ({ colors, spacing }) => ({
   padding: spacing.md,
   borderRadius: spacing.xxxl,
@@ -230,14 +175,6 @@ const $headerRightComp: ThemedStyle<ViewStyle> = ({ colors, spacing }) => ({
 const $headerLeft: ViewStyle = {
   flex: 1,
 }
-const $categoryCard: ViewStyle = {
-  backgroundColor: "#444",
-  borderRadius: 8,
-  marginRight: 8,
-  padding: 16,
-}
-
-const $seeAll: TextStyle = { color: "#007AFF" }
 
 const $header: ThemedStyle<ViewStyle> = ({ spacing }) => ({
   paddingHorizontal: spacing.lg,
@@ -248,31 +185,4 @@ const $todoInProgressCont: ThemedStyle<ViewStyle> = ({ spacing }) => ({
   flex: 1,
   flexBasis: 1,
   gap: spacing.xs,
-})
-
-const $toDoInProgressCard: ThemedStyle<ViewStyle> = ({ spacing }) => ({
-  flex: 1,
-
-  paddingVertical: spacing.lg,
-  paddingHorizontal: spacing.md,
-  borderRadius: spacing.lg,
-  justifyContent: "space-between",
-})
-
-const $todayTasksContainer: ThemedStyle<ViewStyle> = ({ colors, spacing }) => ({
-  flex: 1,
-  backgroundColor: colors.palette.accent200,
-  paddingVertical: spacing.lg,
-  paddingHorizontal: spacing.md,
-  borderRadius: spacing.lg,
-})
-
-const $todayTasksHeader: ThemedStyle<ViewStyle> = ({ spacing }) => ({
-  paddingBottom: spacing.lg,
-})
-
-const $todayTasksSeparator: ThemedStyle<ViewStyle> = ({ colors }) => ({
-  borderBottomWidth: 0.5,
-  borderColor: colors.separator,
-  marginVertical: 10,
 })
