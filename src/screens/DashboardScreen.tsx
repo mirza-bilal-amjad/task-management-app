@@ -1,6 +1,6 @@
-import { observer } from "mobx-react-lite"
 import { FC } from "react"
 import { FlatList, Platform, TextStyle, View, ViewStyle } from "react-native"
+import { observer } from "mobx-react-lite"
 
 import {
   Button,
@@ -88,7 +88,6 @@ export const DashboardScreen = observer(() => {
   return (
     <Screen
       style={themed($container)}
-      safeAreaEdges={["bottom"]}
       ScrollViewProps={{
         showsVerticalScrollIndicator: Platform.OS !== "web",
       }}

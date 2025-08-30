@@ -1,18 +1,20 @@
-import React, { FC, useEffect } from "react"
+import { FC, useEffect } from "react"
 import { ImageURISource, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { useRouter } from "expo-router"
 import { observer } from "mobx-react-lite"
-import { Text } from "@/components"
-import { CategoryStoreSnapshot } from "@/models/category-tasks/CategoryModel"
-import { $styles, ThemedStyle, useAppTheme } from "@/theme"
-import { StackedImages } from "./StackedImages"
 import Animated, {
+  interpolate,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
-  useDerivedValue,
-  interpolate,
 } from "react-native-reanimated"
+
+import { Text } from "@/components"
+import { CategoryStoreSnapshot } from "@/models/category-tasks/CategoryModel"
+import { ThemedStyle, useAppTheme } from "@/theme"
+
+import { StackedImages } from "./StackedImages"
 
 type ProjectCardProps = CategoryStoreSnapshot & {}
 
@@ -51,15 +53,15 @@ const $category: ThemedStyle<TextStyle> = ({ colors }) => ({
   color: colors.text,
 })
 
-const $dueDate: ThemedStyle<TextStyle> = ({ colors, spacing }) => ({
+const $dueDate: ThemedStyle<TextStyle> = ({ colors }) => ({
   color: colors.text,
 })
 
-const $progressContainer: ThemedStyle<ViewStyle> = ({ spacing }) => ({
+const $progressContainer: ThemedStyle<ViewStyle> = () => ({
   flex: 1,
 })
 
-const $progressText: ThemedStyle<TextStyle> = ({ colors, spacing }) => ({
+const $progressText: ThemedStyle<TextStyle> = ({ colors }) => ({
   fontSize: 16,
   color: colors.text,
   textAlign: "right",
@@ -95,7 +97,7 @@ const $progressRow: ThemedStyle<ViewStyle> = () => ({
   gap: 50,
 })
 
-export const ProjectCard: FC<ProjectCardProps> = observer(({ id, name, description }) => {
+export const ProjectCard: FC<ProjectCardProps> = observer(({ id, name }) => {
   const Router = useRouter()
   const { themed } = useAppTheme()
   const sharedProgress = useSharedValue(0)
@@ -124,7 +126,7 @@ export const ProjectCard: FC<ProjectCardProps> = observer(({ id, name, descripti
   })
 
   const handleOnPressProjectItem = () => {
-    Router.push(`/categories/[${id}]`)
+    Router.replace(`/projects/${id}`)
   }
 
   useEffect(() => {

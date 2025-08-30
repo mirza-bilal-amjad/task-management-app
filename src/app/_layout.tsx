@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Platform } from "react-native"
 import { SplashScreen, Stack } from "expo-router"
 import { useFonts } from "@expo-google-fonts/space-grotesk"
 import { observer } from "mobx-react-lite"
@@ -11,7 +12,6 @@ import { useInitialRootStore } from "@/models"
 import { ThemeProvider } from "@/theme/context"
 import { customFontsToLoad } from "@/theme/typography"
 import { loadDateFnsLocale } from "@/utils/formatDate"
-import { Platform } from "react-native"
 
 SplashScreen.preventAutoHideAsync()
 
@@ -68,8 +68,7 @@ export default observer(function Root() {
                 <Stack.Screen name={"signup"} />
               </Stack.Protected>
               <Stack.Protected guard={isLoggedIn}>
-                <Stack.Screen name={"dashboard"} />
-                <Stack.Screen name={"categories"} />
+                <Stack.Screen name={"(tabs)"} />
               </Stack.Protected>
             </Stack>
           </KeyboardProvider>
@@ -87,7 +86,7 @@ interface UnstableSettings {
 export const unstable_settings: UnstableSettings = {
   // This is used to enable the new Expo Router v2 features.
   // See https://expo.github.io/router/docs/v2/unstable-settings
-  initialRouteName: "dashboard",
+  initialRouteName: "(tabs)",
   onUnhandledError: (error: unknown) => {
     console.error("Unhandled error in Expo Router:", error)
   },

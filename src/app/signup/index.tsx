@@ -97,7 +97,9 @@ export const Signup = observer(function Signup() {
   )
 
   function navigateToLoginScreen() {
-    Router.canGoBack() && Router.back()
+    if (Router.canGoBack()) {
+      Router.back()
+    }
   }
 
   async function signUp() {
@@ -119,7 +121,7 @@ export const Signup = observer(function Signup() {
   async function onPressGoogleSignIn() {
     if (loadingWithGoogle || loadingWithEmail) return
     await loginWithGoogle()
-    Router.dismissTo("/dashboard")
+    Router.dismissTo("/(tabs)/home")
   }
 
   return (
