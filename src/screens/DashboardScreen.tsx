@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import { FC } from "react"
-import { FlatList, TextStyle, View, ViewStyle } from "react-native"
+import { FlatList, Platform, TextStyle, View, ViewStyle } from "react-native"
 
 import {
   Button,
@@ -35,39 +35,23 @@ export const DashboardScreen = observer(() => {
 
   const handleAddProject = () => {
     addProject({
-      name: "New Project",
+      name: "Once there was a fox. he was very thirsty. He flew Away, Once there was a fox. he was very thirsty",
       description: "Project Description",
     })
   }
 
   const TodayTasks: FC<{}> = observer(() => {
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: colors.palette.accent200,
-          paddingVertical: spacing.lg,
-          paddingHorizontal: spacing.md,
-          borderRadius: spacing.lg,
-        }}
-      >
+      <View style={themed($todayTasksContainer)}>
         <FlatList
           scrollEnabled={false}
           ListHeaderComponent={
-            <View style={{ paddingBottom: spacing.lg }}>
+            <View style={themed($todayTasksHeader)}>
               <Text size="xl" weight="bold" text={"Today"} />
             </View>
           }
           data={getTodaysRecentTasks()}
-          ItemSeparatorComponent={() => (
-            <View
-              style={{
-                borderBottomWidth: 0.5,
-                borderColor: colors.separator,
-                marginVertical: 10,
-              }}
-            />
-          )}
+          ItemSeparatorComponent={() => <View style={themed($todayTasksSeparator)} />}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item, index }) => (
             <View key={index}>
@@ -102,12 +86,18 @@ export const DashboardScreen = observer(() => {
   })
 
   return (
-    <Screen style={themed($container)} safeAreaEdges={["bottom"]} preset="scroll">
+    <Screen
+      style={themed($container)}
+      safeAreaEdges={["bottom"]}
+      ScrollViewProps={{
+        showsVerticalScrollIndicator: Platform.OS !== "web",
+      }}
+      preset="scroll"
+    >
       <Header
         style={themed($header)}
         LeftActionComponent={
           <View style={$headerLeft}>
-            <Text text="Good Evening," />
             {user?.displayName && (
               <Text
                 numberOfLines={1}
@@ -116,6 +106,7 @@ export const DashboardScreen = observer(() => {
                 preset="heading"
               />
             )}
+            <Text text="Today, 17 Oct" />
           </View>
         }
         RightActionComponent={
@@ -197,7 +188,11 @@ export const DashboardScreen = observer(() => {
             },
           ]
         }
-        contentContainerStyle={themed({ paddingHorizontal: spacing.lg, gap: spacing.md })}
+        contentContainerStyle={themed({
+          paddingHorizontal: spacing.lg,
+          gap: spacing.md,
+          paddingBottom: spacing.lg,
+        })}
         ListEmptyComponent={() => (
           <EmptyState
             button="Logout"
@@ -210,13 +205,21 @@ export const DashboardScreen = observer(() => {
           />
         )}
         scrollEnabled={false}
-        renderItem={({ item }) => <ProjectCard item={item} />}
+        renderItem={({ item }) => (
+          <ProjectCard
+            id={item.id}
+            name={item.name}
+            description={item.description}
+            tasks={[]}
+            createdAt={""}
+          />
+        )}
       />
     </Screen>
   )
 })
 
-const $container: ThemedStyle<ViewStyle> = () => ({
+const $container: ThemedStyle<ViewStyle> = ({ spacing }) => ({
   flex: 1,
 })
 const $headerRightComp: ThemedStyle<ViewStyle> = ({ colors, spacing }) => ({
@@ -255,4 +258,22 @@ const $toDoInProgressCard: ThemedStyle<ViewStyle> = ({ spacing }) => ({
   paddingHorizontal: spacing.md,
   borderRadius: spacing.lg,
   justifyContent: "space-between",
+})
+
+const $todayTasksContainer: ThemedStyle<ViewStyle> = ({ colors, spacing }) => ({
+  flex: 1,
+  backgroundColor: colors.palette.accent200,
+  paddingVertical: spacing.lg,
+  paddingHorizontal: spacing.md,
+  borderRadius: spacing.lg,
+})
+
+const $todayTasksHeader: ThemedStyle<ViewStyle> = ({ spacing }) => ({
+  paddingBottom: spacing.lg,
+})
+
+const $todayTasksSeparator: ThemedStyle<ViewStyle> = ({ colors }) => ({
+  borderBottomWidth: 0.5,
+  borderColor: colors.separator,
+  marginVertical: 10,
 })

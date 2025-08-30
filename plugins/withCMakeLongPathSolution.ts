@@ -1,6 +1,7 @@
 import { ConfigPlugin, withAppBuildGradle } from "expo/config-plugins"
 
 export const withCMakeLongPathSolution: ConfigPlugin = (config) => {
+  if (process.platform === "darwin") return config
   return withAppBuildGradle(config, async (config) => {
     let buildGradle = config.modResults.contents
 
